@@ -41,8 +41,7 @@ class MainSection extends Component {
         {this.renderToggleAll(markedCount)}
         <ul className='todo-list'>
           {filteredTodos.map(todo =>
-            //If you remove actions as props your pure render functions as expected :(
-            <TodoItem key={todo.get('id')} todo={todo} {...actions} />
+            <TodoItem key={todo.get('id')} todo={todo} {...this.props.actions} />
           )}
         </ul>
         {this.renderFooter(markedCount)}

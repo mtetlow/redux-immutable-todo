@@ -7,8 +7,7 @@ import * as TodoActions from '../actions/TodoActions';
 
 class TodoApp extends Component {
   render() {
-    const { todos, dispatch } = this.props;
-    const actions = bindActionCreators(TodoActions, dispatch);
+    const { todos, actions } = this.props;
 
     return (
       <div>
@@ -25,4 +24,17 @@ function select(state) {
   };
 }
 
-export default connect(select)(TodoApp);
+// Which part of the Redux global state does our component want to receive as props?
+function mapStateToProps(state) {
+  return {...state};
+}
+
+// Which action creators does it want to receive by props?
+function mapDispatchToProps(dispatch) {
+  return {actions:bindActionCreators(TodoActions,dispatch)};
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(TodoApp);
